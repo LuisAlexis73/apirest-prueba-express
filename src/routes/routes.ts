@@ -12,11 +12,15 @@ import {
   findUsers,
   updateUser,
 } from "@controllers/users.controllers";
+import {
+  createRoles,
+  deleteRoles,
+  findRoles,
+  findRolesById,
+  updateRoles,
+} from "@controllers/roles.controller";
 
 const router = Router();
-
-const rolesRepository: IRolesRepository = new RolesRepository();
-const rolesService: IRolesService = new RolesService(rolesRepository);
 
 export default () => {
   router.get("/health", (req, res) => {
@@ -31,31 +35,15 @@ export default () => {
   router.delete("/users/:id", deleteUser);
 
   // Roles routes
-  router.get("/roles", async (req, res) => {
-    const roles = await rolesService.findRoles();
-    res.json(roles);
-  });
+  router.get("/roles", findRoles);
 
-  router.post("/roles", async (req, res) => {
-    const newRoles: Roles = req.body;
-    const result = await rolesService.createRoles(newRoles);
-    res.json(result);
-  });
+  router.post("/roles", createRoles);
 
-  router.get("/roles/:id", async (req, res) => {
-    const roles = await rolesService.findRolesById(req.params.id);
-    res.json(roles);
-  });
+  router.get("/roles/:id", findRolesById);
 
-  router.put("/roles/:id", async (req, res) => {
-    const roles = await rolesService.updateRoles(req.params.id, req.body);
-    res.json(roles);
-  });
+  router.put("/roles/:id", updateRoles);
 
-  router.delete("/roles/:id", async (req, res) => {
-    const roles = await rolesService.deleteRoles(req.params.id);
-    res.json(roles);
-  });
+  router.delete("/roles/:id", deleteRoles);
 
   return router;
 };
