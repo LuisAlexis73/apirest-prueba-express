@@ -13,6 +13,7 @@ import {
   findRolesById,
   updateRoles,
 } from "@controllers/roles.controller";
+import { loginUser, registerUser } from "@controllers/auth/auth.controller";
 
 const router = Router();
 
@@ -20,6 +21,10 @@ export default () => {
   router.get("/health", (req, res) => {
     res.send("API is running");
   });
+
+  // Auth routes
+  router.post("/auth/register", registerUser);
+  router.post("/auth/login", loginUser);
 
   // User routes
   router.get("/users", findUsers);
