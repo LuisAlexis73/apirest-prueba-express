@@ -1,10 +1,4 @@
-import { IUserRepository, IUserService, User } from "types/Users.types";
 import { Router } from "express";
-import { UserRepository } from "@repositories/user.repository";
-import { UserService } from "@services/user.service";
-import { RolesService } from "@services/Roles.service";
-import { IRolesRepository, IRolesService, Roles } from "types/Roles.types";
-import { RolesRepository } from "@repositories/roles.repository";
 import {
   createUser,
   deleteUser,
@@ -36,13 +30,9 @@ export default () => {
 
   // Roles routes
   router.get("/roles", findRoles);
-
   router.post("/roles", createRoles);
-
   router.get("/roles/:id", findRolesById);
-
   router.put("/roles/:id", updateRoles);
-
   router.delete("/roles/:id", deleteRoles);
 
   return router;
