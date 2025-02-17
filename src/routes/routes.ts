@@ -5,11 +5,15 @@ import { UserService } from "@services/user.service";
 import { RolesService } from "@services/Roles.service";
 import { IRolesRepository, IRolesService, Roles } from "types/Roles.types";
 import { RolesRepository } from "@repositories/roles.repository";
+import {
+  createUser,
+  deleteUser,
+  findUserById,
+  findUsers,
+  updateUser,
+} from "@controllers/users.controllers";
 
 const router = Router();
-
-const userRepository: IUserRepository = new UserRepository();
-const userService: IUserService = new UserService(userRepository);
 
 const rolesRepository: IRolesRepository = new RolesRepository();
 const rolesService: IRolesService = new RolesService(rolesRepository);
@@ -20,31 +24,11 @@ export default () => {
   });
 
   // User routes
-  router.get("/users", async (req, res) => {
-    const users = await userService.findUsers();
-    res.json(users);
-  });
-
-  router.post("/users", async (req, res) => {
-    const newUser: User = req.body;
-    const result = await userService.createUser(newUser);
-    res.json(result);
-  });
-
-  router.get("/users/:id", async (req, res) => {
-    const users = await userService.findUserById(req.params.id);
-    res.json(users);
-  });
-
-  router.put("/users/:id", async (req, res) => {
-    const users = await userService.updateUser(req.params.id, req.body);
-    res.json(users);
-  });
-
-  router.delete("/users/:id", async (req, res) => {
-    const users = await userService.deleteUser(req.params.id);
-    res.json(users);
-  });
+  router.get("/users", findUsers);
+  router.post("/users", createUser);
+  router.get("/users/:id", findUserById);
+  router.put("/users/:id", updateUser);
+  router.delete("/users/:id", deleteUser);
 
   // Roles routes
   router.get("/roles", async (req, res) => {
