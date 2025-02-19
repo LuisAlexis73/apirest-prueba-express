@@ -2,7 +2,7 @@ import { UserRepository } from "@repositories/user.repository";
 import { UserService } from "@services/user.service";
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { Method, permissions } from "types/Permissions.types";
+import { Method, permissions } from "../types/Permissions.types";
 import { IUserRepository, IUserService, User } from "types/Users.types";
 
 const userRepository: IUserRepository = new UserRepository();
