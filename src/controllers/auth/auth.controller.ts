@@ -25,6 +25,7 @@ export const registerUser = async (req: Request, res: Response) => {
 };
 
 export const loginUser = async (req: Request, res: Response) => {
+  const jwtSecret = process.env.JWT_SECRET as string;
   try {
     const { email, password }: User = req.body;
     const user = await userService.findUserByEmail(email);
@@ -37,9 +38,13 @@ export const loginUser = async (req: Request, res: Response) => {
     if (!comparePassword)
       return res.status(400).json({ message: "Invalid user or password" });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string, {
-      expiresIn: "1d",
-    });
+    const token = jwt.sign(
+      { id: user._id, email: user.email, username: user.username },
+      jwtSecret,
+      {
+        expiresIn: "1d",
+      }
+    );
 
     res.status(200).json(token);
   } catch (error) {

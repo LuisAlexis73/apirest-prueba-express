@@ -2,7 +2,6 @@ import { RolesRepository } from "@repositories/roles.repository";
 import { RolesService } from "@services/Roles.service";
 import { IRolesRepository, IRolesService, Roles } from "types/Roles.types";
 import { Request, Response } from "express";
-import { User } from "types/Users.types";
 
 const rolesRepository: IRolesRepository = new RolesRepository();
 const rolesService: IRolesService = new RolesService(rolesRepository);

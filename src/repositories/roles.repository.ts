@@ -1,4 +1,5 @@
 import { RolesModel } from "@models/Roles";
+import { Query } from "types/Repository.types";
 import { IRolesRepository, Roles } from "types/Roles.types";
 
 export class RolesRepository implements IRolesRepository {
@@ -10,8 +11,8 @@ export class RolesRepository implements IRolesRepository {
     return await newRoles.save();
   }
 
-  async find(): Promise<Roles[]> {
-    return await RolesModel.find().exec();
+  async find(query?: Query): Promise<Roles[]> {
+    return await RolesModel.find(query || {}).exec();
   }
 
   async findById(id: string): Promise<Roles | null> {

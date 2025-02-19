@@ -1,18 +1,19 @@
+import { Query } from "types/Repository.types";
 import { IRolesRepository, IRolesService, Roles } from "types/Roles.types";
 
 export class RolesService implements IRolesService {
   private rolesRepository: IRolesRepository;
 
-  constructor(rolesRepository: IRolesRepository) {
-    this.rolesRepository = rolesRepository;
+  constructor(repository: IRolesRepository) {
+    this.rolesRepository = repository;
   }
 
   async createRoles(roles: Roles): Promise<Roles> {
     return this.rolesRepository.create(roles);
   }
 
-  async findRoles(): Promise<Roles[]> {
-    return this.rolesRepository.find();
+  async findRoles(query?: Query): Promise<Roles[]> {
+    return this.rolesRepository.find(query);
   }
 
   async findRolesById(id: string): Promise<Roles | null> {

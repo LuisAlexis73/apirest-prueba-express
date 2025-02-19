@@ -1,5 +1,6 @@
 POST http://localhost:4000/api/v1/roles HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjNhMzY1NDFkYjczMzY4N2QxNDNmZSIsImlhdCI6MTczOTg1NTUyOCwiZXhwIjoxNzM5OTQxOTI4fQ.N6uSNgMVss7WBsImucGbbNg_iU9zWz7m1wBMEi7sDgQ
 
 {
   "name": "test"
@@ -7,17 +8,19 @@ Content-Type: application/json
 
 ### Get all
 GET http://localhost:4000/api/v1/roles HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUwMGJhMmRlYWZmNGJiMmU2YWI5NiIsImVtYWlsIjoiYWRtaW5AdGVzdC5jb20iLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzM5OTIxNjQwLCJleHAiOjE3NDAwMDgwNDB9.Tv8JQbafOlvAcmO4Aj9BOX8oipvK2JZ1bUh2RnRjjRo
 
 ### Get by id
 GET http://localhost:4000/api/v1/roles/67b389a34d78f16b04c8dd64 HTTP/1.1
 
 ### Update
-PUT http://localhost:4000/api/v1/roles/67b389a34d78f16b04c8dd64 HTTP/1.1
+PUT http://localhost:4000/api/v1/roles/67b4ffc08110aaa0272cf8d0 HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Test"
+  "permissions": ["admin_granted"]
 }
 
 ### Delete
-DELETE http://localhost:4000/api/v1/roles/67b389a34d78f16b04c8dd64 HTTP/1.1
+DELETE http://localhost:4000/api/v1/roles/67b389954d78f16b04c8dd60 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjNhMzY1NDFkYjczMzY4N2QxNDNmZSIsImlhdCI6MTczOTg1NTUyOCwiZXhwIjoxNzM5OTQxOTI4fQ.N6uSNgMVss7WBsImucGbbNg_iU9zWz7m1wBMEi7sDgQ

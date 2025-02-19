@@ -8,6 +8,8 @@ const UserSchema: Schema = new Schema<User>(
     username: { type: String, unique: true, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, trim: true },
+    permissions: { type: [String], default: [] },
+    roles: [{ ref: "Roles", type: Schema.Types.ObjectId }],
   },
   {
     timestamps: true,
