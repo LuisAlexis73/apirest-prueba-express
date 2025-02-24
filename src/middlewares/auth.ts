@@ -50,7 +50,6 @@ export const getPermissions = async (
   ) {
     findMethod?.permissions.push(`${currentModule}_${findMethod.scope}`);
   }
-  console.log("findMethod :>> ", findMethod);
 
   // const rolesPermissions = roles?.map((role) => role.permissions).flat();
   // const mergedPermissions = [new Set(rolesPermissions)];
@@ -59,7 +58,6 @@ export const getPermissions = async (
   const mergedRolesPermissions = [
     ...new Set(roles?.flatMap((role) => role.permissions)),
   ];
-  console.log("mergedRolesPermissions :>> ", mergedRolesPermissions);
 
   let userPermissions: string[] = [];
 
@@ -72,7 +70,6 @@ export const getPermissions = async (
   const permissionsGranted = findMethod?.permissions.find((permission) =>
     userPermissions.includes(permission)
   );
-  console.log("permissionsGranted :>> ", permissionsGranted);
 
   if (!permissionsGranted) {
     return res.status(401).send("Unauthorized!");
