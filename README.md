@@ -25,7 +25,7 @@ The project provides endpoints to interact with users, roles and posts.
 **Execution:**
 
 1. Start the server:
-   `npm run build && npm run dev`
+   `npm run build && npm run start`
 
 2. Access the API:
    `http://localhost:3000`
